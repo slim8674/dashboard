@@ -1,12 +1,20 @@
-# Usa l'immagine base di Nginx
-FROM nginx:alpine
+# Use the official Node.js image
+FROM node:14
 
-# Copia i file HTML e CSS nella directory di Nginx
-COPY dashboard.html /usr/share/nginx/html/index.html
-COPY style.css /usr/share/nginx/html/
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Espone la porta 80 per accedere all'applicazione web
-EXPOSE 80
+# Copy package.json and package-lock.json
+COPY package*.json ./
 
-# Avvia Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application files
+COPY . .
+
+# Expose port 8888
+EXPOSE 8888
+
+# Command to run the Node.js server
+CMD ["node", "server.js"]
