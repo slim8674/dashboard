@@ -23,5 +23,5 @@ document.addEventListener("DOMContentLoaded", function() {
     updateStatuses();
 
     // Update statuses every 5 seconds
-    setInterval(updateStatuses, 5000);
+    setInterval(updateStatuses, 1000);
 });
